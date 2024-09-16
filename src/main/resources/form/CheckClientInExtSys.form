@@ -1,0 +1,55 @@
+{
+  "components": [
+    {
+      "label": "Пин",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ehpeay",
+        "columns": null
+      },
+      "id": "Field_1we2dlg",
+      "key": "pin",
+      "disabled": false,
+      "readonly": true
+    },
+    {
+      "label": "Инн",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_0ehpeay",
+        "columns": null
+      },
+      "id": "Field_1cq3z23",
+      "key": "tin"
+    },
+    {
+      "values": [
+        {
+          "label": "Отсутствует",
+          "value": "doesClientExistInExtSys"
+        }
+      ],
+      "label": "Клиент отсутствует во внешней системе",
+      "type": "radio",
+      "layout": {
+        "row": "Row_0tj8vzv",
+        "columns": null
+      },
+      "id": "Field_1o6kdwf",
+      "key": "doesClientExistInExtSys",
+      "defaultValue": "<none>",
+      "validate": {
+        "required": false
+      }
+    }
+  ],
+  "type": "default",
+  "id": "CheckClientInExtSys",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.27.0"
+  },
+  "executionPlatform": "Camunda Platform",
+  "executionPlatformVersion": "7.21.0",
+  "schemaVersion": 16
+}

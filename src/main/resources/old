@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: RKOApplication
+
+server:
+  port: 8080
+  error:
+    include-message: always
+
+camunda:
+  operate:
+    client:
+      url: http://176.124.212.63:8081/
+      username: demo
+      password: demo
+  client:
+    zeebe:
+      base-url: http://176.124.212.63:26500
+    identity:
+      enabled: false

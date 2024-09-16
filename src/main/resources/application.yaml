@@ -1,0 +1,6 @@
+zeebe:
+  client:
+    broker:
+      gateway-address: 176.124.212.63:26500
+    security:
+      plaintext: 'true'

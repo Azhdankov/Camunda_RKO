@@ -1,0 +1,114 @@
+{
+  "components": [
+    {
+      "components": [
+        {
+          "label": "ИНН",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_0u5syi7",
+            "columns": null
+          },
+          "id": "Field_1ktxh2e",
+          "key": "tin",
+          "disabled": false,
+          "readonly": true
+        },
+        {
+          "label": "Тип клиента",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_0u5syi7",
+            "columns": null
+          },
+          "id": "Field_1gwohbc",
+          "key": "clientType",
+          "readonly": true
+        }
+      ],
+      "showOutline": true,
+      "label": "",
+      "type": "group",
+      "layout": {
+        "row": "Row_1845eua",
+        "columns": null
+      },
+      "id": "Field_168mh82",
+      "properties": {}
+    },
+    {
+      "components": [
+        {
+          "label": "Результаты скоринга",
+          "type": "table",
+          "layout": {
+            "row": "Row_0bnj415",
+            "columns": null
+          },
+          "dataSource": "=scorringResults",
+          "rowCount": 10,
+          "id": "Field_0ayqaq2",
+          "columns": [
+            {
+              "label": "Тип",
+              "key": "type"
+            },
+            {
+              "label": "Название",
+              "key": "name"
+            },
+            {
+              "label": "Прошёл ли",
+              "key": "isCompleted"
+            }
+          ]
+        }
+      ],
+      "showOutline": true,
+      "label": "",
+      "type": "group",
+      "layout": {
+        "row": "Row_1c36znv",
+        "columns": null
+      },
+      "id": "Field_0iavxo4"
+    },
+    {
+      "components": [
+        {
+          "label": "Причина отказа",
+          "type": "textfield",
+          "layout": {
+            "row": "Row_0sb2n1j",
+            "columns": null
+          },
+          "id": "Field_0rh0b1p",
+          "key": "cancelReason",
+          "validate": {
+            "required": true
+          }
+        }
+      ],
+      "showOutline": true,
+      "label": "Отказ в открытии счёта",
+      "type": "group",
+      "layout": {
+        "row": "Row_0rotznf",
+        "columns": null
+      },
+      "id": "Field_10hdz8v",
+      "conditional": {
+        "hide": "=not(some item in scorringResults satisfies item.isCompleted = \"no\")"
+      }
+    }
+  ],
+  "type": "default",
+  "id": "ScoringChecks",
+  "executionPlatform": "Camunda Cloud",
+  "executionPlatformVersion": "8.5.0",
+  "exporter": {
+    "name": "Camunda Modeler",
+    "version": "5.27.0"
+  },
+  "schemaVersion": 16
+}
