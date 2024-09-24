@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 @Deployment(
 		resources = {
-				"classpath:bpmn/RKO.bpmn",
+				"classpath:bpmn/*",
 				"classpath:dmn/GetClientAndProcessTypes.dmn",
 				"classpath:form/ScoringChecks.form",
 				"classpath:form/CheckClientInExtSys.form"
