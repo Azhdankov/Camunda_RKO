@@ -16,7 +16,6 @@ public class Worker {
 
     @JobWorker
     public void sendClientInfoToExtSys(ActivatedJob job) {
-        String corrKey = (String) job.getVariable("corrKey");
         System.out.println("sendClientInfoToExtSys: " + LocalDate.now() + " with variables " + job.getVariables());
     }
 
