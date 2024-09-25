@@ -16,4 +16,5 @@ class ControllerTest extends RKOApplicationTests {
                 .content(readFile("startProcessPostRequest.json")))
                 .andExpect(status().isOk());
     }
+
 }

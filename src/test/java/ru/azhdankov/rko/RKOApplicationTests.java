@@ -1,14 +1,19 @@
 package ru.azhdankov.rko;
 
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletRequest;
-import jakarta.servlet.ServletResponse;
-import org.apache.commons.io.FileUtils;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.camunda.zeebe.client.ZeebeClient;
 import io.camunda.zeebe.process.test.api.ZeebeTestEngine;
 import io.camunda.zeebe.spring.test.ZeebeSpringTest;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import org.apache.commons.io.FileUtils;
 import org.camunda.community.process_test_coverage.junit5.platform8.ProcessEngineCoverageExtension;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -18,12 +23,6 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 
 @SpringBootTest
 @ZeebeSpringTest
@@ -54,7 +53,7 @@ public abstract class RKOApplicationTests {
 				.build();
 	}
 
-	protected <T> T readFile(String classPath,Class<T> clazz) throws IOException {
+	protected <T> T readFile(String classPath, Class<T> clazz) throws IOException {
 		InputStream file = new ClassPathResource(classPath).getInputStream();
 		JsonNode jsonNode = objectMapper.readTree(file);
 		return objectMapper.treeToValue(jsonNode, clazz);

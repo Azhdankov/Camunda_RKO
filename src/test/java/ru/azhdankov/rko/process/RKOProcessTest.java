@@ -5,22 +5,20 @@ import static io.camunda.zeebe.protocol.Protocol.USER_TASK_JOB_TYPE;
 import static io.camunda.zeebe.spring.test.ZeebeTestThreadSupport.*;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import io.camunda.zeebe.client.api.response.ProcessInstanceEvent;
-import org.junit.jupiter.api.Test;
-import org.springframework.core.io.ClassPathResource;
-import ru.azhdankov.rko.RKOApplicationTests;
-import ru.azhdankov.rko.data.InitiateProcessVariables;
-import java.io.InputStream;
 import java.time.Duration;
 import java.util.concurrent.TimeoutException;
+import org.junit.jupiter.api.Test;
+import ru.azhdankov.rko.RKOApplicationTests;
+import ru.azhdankov.rko.data.InitiateProcessVariables;
+import ru.azhdankov.rko.data.ScorringResult;
 
 class RKOProcessTest extends RKOApplicationTests {
 
     @Test
     void processOnbAndInternetBankHappyPath() throws Exception {
-        InitiateProcessVariables variables = readFile("processOnbAndInternetBankStart.json", InitiateProcessVariables.class);
-        ArrayNode result = objectMapper.readValue("[{\"processType\":\"ONB\",\"clientType\":\"LE\"}]", ArrayNode.class);
-        ProcessInstanceEvent processInstanceEvent = zeebe
+        var variables = readFile("processOnbAndInternetBankStart.json", InitiateProcessVariables.class);
+        var result = objectMapper.readValue("[{\"processType\":\"ONB\",\"clientType\":\"LE\"}]", ArrayNode.class);
+        var processInstanceEvent = zeebe
                 .newCreateInstanceCommand()
                 .bpmnProcessId("RKO_process")
                 .latestVersion()
@@ -34,6 +32,7 @@ class RKOProcessTest extends RKOApplicationTests {
                 .messageName("Message_ContinueONBProcess")
                 .correlationKey(variables.getCorrKey())
                 .timeToLive(Duration.ofSeconds(15))
+                .variables(new ScorringResult())
                 .send()
                 .join();
         completeUserTasks();
@@ -43,9 +42,9 @@ class RKOProcessTest extends RKOApplicationTests {
 
     @Test
     void processActlHappyPath() throws Exception {
-        InitiateProcessVariables variables = readFile("processActlStart.json", InitiateProcessVariables.class);
-        ArrayNode result = objectMapper.readValue("[{\"processType\":\"ACTL\",\"clientType\":\"LE\"}]", ArrayNode.class);
-        ProcessInstanceEvent processInstanceEvent = zeebe
+        var variables = readFile("processActlStart.json", InitiateProcessVariables.class);
+        var result = objectMapper.readValue("[{\"processType\":\"ACTL\",\"clientType\":\"LE\"}]", ArrayNode.class);
+        var processInstanceEvent = zeebe
                 .newCreateInstanceCommand()
                 .bpmnProcessId("RKO_process")
                 .latestVersion()
@@ -72,7 +71,7 @@ class RKOProcessTest extends RKOApplicationTests {
 
         zeebe.newActivateJobsCommand()
             .jobType(USER_TASK_JOB_TYPE)
-            .maxJobsToActivate(1)
+            .maxJobsToActivate(32)
             .workerName("waitForUserTaskAndComplete")
             .send()
             .join()
