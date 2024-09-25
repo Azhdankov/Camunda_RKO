@@ -29,39 +29,36 @@ import org.springframework.web.context.WebApplicationContext;
 @ExtendWith(ProcessEngineCoverageExtension.class)
 public abstract class RKOApplicationTests {
 
-	protected MockMvc mockMvc;
+  protected MockMvc mockMvc;
 
-	@Autowired
-	protected ZeebeClient zeebe;
+  @Autowired protected ZeebeClient zeebe;
 
-	@Autowired
-	protected ZeebeTestEngine engine;
+  @Autowired protected ZeebeTestEngine engine;
 
-	@Autowired
-	protected ObjectMapper objectMapper;
+  @Autowired protected ObjectMapper objectMapper;
 
-	@BeforeEach
-	protected void setUp(WebApplicationContext context) {
-		this.mockMvc = MockMvcBuilders
-				.webAppContextSetup(context)
-				.addFilter((ServletRequest request, ServletResponse response, FilterChain chain)-> {
-					response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
-					request.setCharacterEncoding(StandardCharsets.UTF_8.toString());
-					chain.doFilter(request, response);
-				})
-				.alwaysDo(print())
-				.build();
-	}
+  @BeforeEach
+  protected void setUp(WebApplicationContext context) {
+    this.mockMvc =
+        MockMvcBuilders.webAppContextSetup(context)
+            .addFilter(
+                (ServletRequest request, ServletResponse response, FilterChain chain) -> {
+                  response.setCharacterEncoding(StandardCharsets.UTF_8.toString());
+                  request.setCharacterEncoding(StandardCharsets.UTF_8.toString());
+                  chain.doFilter(request, response);
+                })
+            .alwaysDo(print())
+            .build();
+  }
 
-	protected <T> T readFile(String classPath, Class<T> clazz) throws IOException {
-		InputStream file = new ClassPathResource(classPath).getInputStream();
-		JsonNode jsonNode = objectMapper.readTree(file);
-		return objectMapper.treeToValue(jsonNode, clazz);
-	}
+  protected <T> T readFile(String classPath, Class<T> clazz) throws IOException {
+    InputStream file = new ClassPathResource(classPath).getInputStream();
+    JsonNode jsonNode = objectMapper.readTree(file);
+    return objectMapper.treeToValue(jsonNode, clazz);
+  }
 
-	protected String readFile(String classPath) throws IOException {
-		ClassPathResource file = new ClassPathResource(classPath);
-		return FileUtils.readFileToString(file.getFile(), StandardCharsets.UTF_8.toString());
-	}
-
+  protected String readFile(String classPath) throws IOException {
+    ClassPathResource file = new ClassPathResource(classPath);
+    return FileUtils.readFileToString(file.getFile(), StandardCharsets.UTF_8.toString());
+  }
 }

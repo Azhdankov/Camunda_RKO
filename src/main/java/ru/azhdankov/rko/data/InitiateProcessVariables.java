@@ -10,10 +10,11 @@ import lombok.Setter;
 @Setter
 public class InitiateProcessVariables {
 
-    private String tin;
-    private String pin;
-    @JsonAlias("clientRequestUID")
-    private String corrKey;
-    private String addProduct;
+  private String tin;
+  private String pin;
 
+  @JsonAlias("clientRequestUID")
+  private String corrKey;
+
+  private String addProduct;
 }

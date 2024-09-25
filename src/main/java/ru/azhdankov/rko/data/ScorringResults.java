@@ -10,6 +10,5 @@ import lombok.Setter;
 @Setter
 public class ScorringResults {
 
-    private List<ScorringResult> scorringResults;
-
+  private List<ScorringResult> scorringResults;
 }

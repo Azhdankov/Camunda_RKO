@@ -9,12 +9,13 @@ import ru.azhdankov.rko.RKOApplicationTests;
 
 class ControllerTest extends RKOApplicationTests {
 
-    @Test
-    void processRestControllerInTest() throws Exception {
-        mockMvc.perform(post("/start_process")
+  @Test
+  void processRestControllerInTest() throws Exception {
+    mockMvc
+        .perform(
+            post("/start_process")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(readFile("startProcessPostRequest.json")))
-                .andExpect(status().isOk());
-    }
-
+        .andExpect(status().isOk());
+  }
 }
