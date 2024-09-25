@@ -5,9 +5,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
-import ru.azhdankov.rko.RKOApplicationTests;
+import ru.azhdankov.rko.RkoApplicationTests;
 
-class ControllerTest extends RKOApplicationTests {
+class ControllerTest extends RkoApplicationTests {
 
   @Test
   void processRestControllerInTest() throws Exception {

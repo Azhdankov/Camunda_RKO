@@ -2,17 +2,17 @@ package ru.azhdankov.rko.process;
 
 import static io.camunda.zeebe.process.test.assertions.BpmnAssert.assertThat;
 import static io.camunda.zeebe.protocol.Protocol.USER_TASK_JOB_TYPE;
-import static io.camunda.zeebe.spring.test.ZeebeTestThreadSupport.*;
+import static io.camunda.zeebe.spring.test.ZeebeTestThreadSupport.waitForProcessInstanceHasPassedElement;
 
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import java.time.Duration;
 import java.util.concurrent.TimeoutException;
 import org.junit.jupiter.api.Test;
-import ru.azhdankov.rko.RKOApplicationTests;
+import ru.azhdankov.rko.RkoApplicationTests;
 import ru.azhdankov.rko.data.InitiateProcessVariables;
 import ru.azhdankov.rko.data.ScorringResult;
 
-class RKOProcessTest extends RKOApplicationTests {
+class RkoProcessTest extends RkoApplicationTests {
 
   @Test
   void processOnbAndInternetBankHappyPath() throws Exception {

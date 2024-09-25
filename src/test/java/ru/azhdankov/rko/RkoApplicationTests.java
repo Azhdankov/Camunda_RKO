@@ -27,7 +27,7 @@ import org.springframework.web.context.WebApplicationContext;
 @SpringBootTest
 @ZeebeSpringTest
 @ExtendWith(ProcessEngineCoverageExtension.class)
-public abstract class RKOApplicationTests {
+public abstract class RkoApplicationTests {
 
   protected MockMvc mockMvc;
 
