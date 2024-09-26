@@ -38,7 +38,7 @@ repositories {
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("io.camunda:zeebe-bom:8.5.5")
-    implementation("org.springframework.boot:spring-boot-starter:3.3.3")
+    implementation("org.springframework.boot:spring-boot-starter:${springVersion}")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.6.0")
     implementation("io.camunda.spring:spring-boot-starter-camunda:${camundaVersion}")
     implementation("io.grpc:grpc-stub:${grpcVersion}")
