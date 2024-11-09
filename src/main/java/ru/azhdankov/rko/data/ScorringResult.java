@@ -8,7 +8,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class ScorringResult {
-    private String type;
-    private String name;
-    private String isCompleted;
+
+  private String type;
+  private String name;
+  private String isCompleted;
 }
